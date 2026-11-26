@@ -110,13 +110,3 @@ data/                   sample datasets (small: 10 parcels/12 nodes, large: 200 
 tests/                  unit tests
 outputs/                run traces, test results, runtime_charts.png
 ```
-
-**Screenshots:** add screenshots of your own terminal runs (`python main.py`, the tests, and
-`outputs/runtime_charts.png`) to a `screenshots/` folder before submitting.
-
-## Viva cheat-sheet
-* Why merge sort? Worst-case O(n log n), stable.
-* Why DP not greedy for knapsack? Greedy by value/weight can miss the optimum for 0/1 items.
-* Why does Dijkstra need non-negative weights? A settled node's distance could otherwise still improve.
-* Is nearest-neighbour optimal? No - it is a heuristic; the tour can be much longer than optimal.
-* What is the DP table size? (n+1) × (W+1).
