@@ -1,0 +1,110 @@
+========================================================================
+PHASE 2a - PARCELS SORTED BY DEADLINE (then priority)  [merge sort]
+========================================================================
+  # ID     Wt(kg)  Prio  Deadline(h)  Dest
+  1 P070        3     7          1.0    50
+  2 P054       10     4          1.2    91
+  3 P084       15     2          1.2    80
+  4 P005        9    10          1.6    26
+  5 P108       15     7          1.6    95
+  6 P001       11     2          1.6    36
+  7 P195        7     6          1.7    42
+  8 P097       14     5          2.0    43
+  9 P138        3     1          2.1    61
+ 10 P074       10     9          2.4    41
+ 11 P062        1     2          2.4    94
+ 12 P056       14     6          2.6    31
+ 13 P186       11     6          2.6    83
+ 14 P077        2     3          2.6     9
+ 15 P085       10     2          2.7    28
+... (185 more parcels)
+
+========================================================================
+PHASE 2b - BOX FILLING (0/1 knapsack DP, van capacity = 100 kg)
+========================================================================
+Best total priority value : 249
+Load carried              : 100 / 100 kg
+Selected parcels          : P070, P062, P152, P118, P196, P021, P013, P163, P018, P103, P025, P037, P144, P151, P099, P194, P166, P079, P119, P040, P167, P080, P176, P177, P049, P034, P048, P111, P024, P121, P039, P043, P188, P190, P038
+Left for next trip        : 165 parcels
+
+========================================================================
+PHASE 3 - DELIVERY ROUTE (Dijkstra legs + nearest-neighbour TSP)
+========================================================================
+Customer stops : [2, 6, 18, 20, 25, 31, 34, 35, 37, 40, 41, 42, 45, 50, 55, 59, 61, 72, 73, 80, 81, 82, 83, 85, 86, 87, 89, 94, 98, 99]
+Route order    : 0 -> 45 -> 41 -> 73 -> 80 -> 55 -> 61 -> 82 -> 72 -> 20 -> 83 -> 87 -> 81 -> 40 -> 25 -> 85 -> 94 -> 42 -> 98 -> 35 -> 59 -> 6 -> 2 -> 34 -> 31 -> 89 -> 99 -> 18 -> 37 -> 50 -> 86 -> 0 (0 = depot)
+  leg   0 -> 45     5.2 km   roads: 0 > 45
+  leg  45 -> 41     7.4 km   roads: 45 > 41
+  leg  41 -> 73     7.8 km   roads: 41 > 73
+  leg  73 -> 80     3.7 km   roads: 73 > 80
+  leg  80 -> 55     5.7 km   roads: 80 > 62 > 55
+  leg  55 -> 61     5.4 km   roads: 55 > 62 > 61
+  leg  61 -> 82    11.2 km   roads: 61 > 62 > 55 > 16 > 12 > 82
+  leg  82 -> 72     3.8 km   roads: 82 > 12 > 72
+  leg  72 -> 20     4.1 km   roads: 72 > 12 > 20
+  leg  20 -> 83     2.9 km   roads: 20 > 67 > 83
+  leg  83 -> 87     6.2 km   roads: 83 > 87
+  leg  87 -> 81    16.2 km   roads: 87 > 83 > 67 > 20 > 12 > 70 > 81
+  leg  81 -> 40    11.8 km   roads: 81 > 70 > 91 > 40
+  leg  40 -> 25     4.7 km   roads: 40 > 25
+  leg  25 -> 85    11.0 km   roads: 25 > 85
+  leg  85 -> 94     3.8 km   roads: 85 > 94
+  leg  94 -> 42    12.0 km   roads: 94 > 42
+  leg  42 -> 98     2.8 km   roads: 42 > 98
+  leg  98 -> 35    11.9 km   roads: 98 > 35
+  leg  35 -> 59     9.2 km   roads: 35 > 23 > 59
+  leg  59 -> 6     16.2 km   roads: 59 > 0 > 1 > 6
+  leg   6 -> 2      8.7 km   roads: 6 > 1 > 2
+  leg   2 -> 34    12.9 km   roads: 2 > 1 > 0 > 5 > 15 > 34
+  leg  34 -> 31     3.2 km   roads: 34 > 31
+  leg  31 -> 89     4.1 km   roads: 31 > 89
+  leg  89 -> 99    13.4 km   roads: 89 > 13 > 99
+  leg  99 -> 18    20.9 km   roads: 99 > 13 > 31 > 18
+  leg  18 -> 37    23.9 km   roads: 18 > 1 > 0 > 49 > 37
+  leg  37 -> 50    27.7 km   roads: 37 > 20 > 12 > 16 > 50
+  leg  50 -> 86    36.8 km   roads: 50 > 16 > 55 > 62 > 28 > 92 > 51 > 86
+  leg  86 -> 0     25.2 km   roads: 86 > 51 > 30 > 5 > 0
+Total route length: 339.8 km (~11.33 h at 30 km/h)
+
+Deadline check for the selected parcels:
+  P070  node 50  ETA  9.26 h  deadline   1.0 h  LATE
+  P062  node 94  ETA  3.70 h  deadline   2.4 h  LATE
+  P152  node 37  ETA  8.34 h  deadline   2.8 h  LATE
+  P118  node 34  ETA  6.15 h  deadline   5.1 h  LATE
+  P196  node 34  ETA  6.15 h  deadline   5.9 h  LATE
+  P021  node 42  ETA  4.10 h  deadline   6.1 h  ON TIME
+  P013  node 81  ETA  2.65 h  deadline   7.7 h  ON TIME
+  P163  node 87  ETA  2.11 h  deadline   8.7 h  ON TIME
+  P018  node 86  ETA 10.49 h  deadline   9.2 h  LATE
+  P103  node 6   ETA  5.43 h  deadline   9.4 h  ON TIME
+  P025  node 83  ETA  1.91 h  deadline  10.1 h  ON TIME
+  P037  node 59  ETA  4.89 h  deadline  11.0 h  ON TIME
+  P144  node 72  ETA  1.67 h  deadline  11.7 h  ON TIME
+  P151  node 31  ETA  6.26 h  deadline  12.1 h  ON TIME
+  P099  node 55  ETA  0.99 h  deadline  13.7 h  ON TIME
+  P194  node 86  ETA 10.49 h  deadline  14.1 h  ON TIME
+  P166  node 85  ETA  3.57 h  deadline  14.6 h  ON TIME
+  P079  node 80  ETA  0.80 h  deadline  14.7 h  ON TIME
+  P119  node 45  ETA  0.17 h  deadline  14.7 h  ON TIME
+  P040  node 20  ETA  1.81 h  deadline  15.0 h  ON TIME
+  P167  node 18  ETA  7.54 h  deadline  15.8 h  ON TIME
+  P080  node 73  ETA  0.68 h  deadline  16.1 h  ON TIME
+  P176  node 73  ETA  0.68 h  deadline  16.4 h  ON TIME
+  P177  node 99  ETA  6.84 h  deadline  17.1 h  ON TIME
+  P049  node 89  ETA  6.40 h  deadline  18.4 h  ON TIME
+  P034  node 2   ETA  5.72 h  deadline  20.8 h  ON TIME
+  P048  node 55  ETA  0.99 h  deadline  21.1 h  ON TIME
+  P111  node 61  ETA  1.17 h  deadline  21.1 h  ON TIME
+  P024  node 41  ETA  0.42 h  deadline  21.2 h  ON TIME
+  P121  node 25  ETA  3.20 h  deadline  21.7 h  ON TIME
+  P039  node 81  ETA  2.65 h  deadline  22.0 h  ON TIME
+  P043  node 40  ETA  3.05 h  deadline  22.4 h  ON TIME
+  P188  node 82  ETA  1.55 h  deadline  23.1 h  ON TIME
+  P190  node 35  ETA  4.59 h  deadline  23.2 h  ON TIME
+  P038  node 98  ETA  4.19 h  deadline  23.4 h  ON TIME
+  -> 29 on time, 6 late
+
+Step timings (seconds):
+  sorting     0.000520
+  knapsack    0.002926
+  graph_build 0.000140
+  routing     0.002646

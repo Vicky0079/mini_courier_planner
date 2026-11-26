@@ -1,0 +1,16 @@
+test_dijkstra (test_courier.TestGraph.test_dijkstra) ... ok
+test_dijkstra_vs_floyd_warshall (test_courier.TestGraph.test_dijkstra_vs_floyd_warshall) ... ok
+test_tsp_returns_to_depot (test_courier.TestGraph.test_tsp_returns_to_depot) ... ok
+test_two_opt_never_worse (test_courier.TestGraph.test_two_opt_never_worse) ... ok
+test_against_bruteforce (test_courier.TestKnapsack.test_against_bruteforce) ... ok
+test_textbook_case (test_courier.TestKnapsack.test_textbook_case) ... ok
+test_zero_capacity (test_courier.TestKnapsack.test_zero_capacity) ... ok
+test_end_to_end (test_courier.TestPipeline.test_end_to_end) ... ok
+test_edge_cases (test_courier.TestSorting.test_edge_cases) ... ok
+test_matches_python_sorted (test_courier.TestSorting.test_matches_python_sorted) ... ok
+test_tie_break_higher_priority_first (test_courier.TestSorting.test_tie_break_higher_priority_first) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.035s
+
+OK
